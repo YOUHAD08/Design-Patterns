@@ -1,4 +1,4 @@
-package ma.youhad.proxy_pattern.context;
+package ma.youhad.proxy_pattern.Controllers;
 
 public class SecurityContext {
     public static String username;

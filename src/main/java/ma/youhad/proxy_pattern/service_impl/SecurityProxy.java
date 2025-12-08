@@ -1,6 +1,6 @@
 package ma.youhad.proxy_pattern.service_impl;
 
-import ma.youhad.proxy_pattern.context.SecurityContext;
+import ma.youhad.proxy_pattern.Controllers.SecurityContext;
 import ma.youhad.proxy_pattern.service_interface.IService;
 
 public class SecurityProxy implements IService {

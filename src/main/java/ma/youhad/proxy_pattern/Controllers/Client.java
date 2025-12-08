@@ -1,8 +1,8 @@
-package ma.youhad.proxy_pattern.context;
+package ma.youhad.proxy_pattern.Controllers;
 
 import ma.youhad.proxy_pattern.service_interface.IService;
 
-public class Context {
+public class Client {
     private IService service;
 
     public void compute(int param) {
