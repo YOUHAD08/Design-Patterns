@@ -6,7 +6,7 @@ import ma.youhad.singleton_Builder_prototype_patterns.model.BankAccount;
 
 public class PatternDemo {
     public static void main(String[] args) {
-        BankAccount bankAccount = BankAccount.builder()
+        BankAccount bankAccount = Director.accountBuilder()
                 .accountId(1L)
                 .currency("MAD")
                 .balance(500.0)
