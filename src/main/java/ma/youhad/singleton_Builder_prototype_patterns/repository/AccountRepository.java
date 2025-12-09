@@ -1,0 +1,16 @@
+package ma.youhad.singleton_Builder_prototype_patterns.repository;
+
+import ma.youhad.singleton_Builder_prototype_patterns.model.BankAccount;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+
+public interface AccountRepository {
+    BankAccount save(BankAccount account);
+    List<BankAccount> findAll();
+    Optional<BankAccount> findById(Long id);
+    List<BankAccount> Search(Predicate<BankAccount> predicate);
+    BankAccount update(BankAccount account);
+    void deleteById(Long id);
+}
