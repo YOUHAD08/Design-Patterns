@@ -22,12 +22,25 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     private Map<Long, BankAccount> accounts = new HashMap<>();
     private long accountId = 0;
+//    @Override
+//    public BankAccount save(BankAccount account) {
+//        long id;
+//       synchronized (this){ // close this object (AccountRepositoryImpl) and all its variables until we increment
+//            id=++accountId;
+//        }
+//        account.setAccountId(id);
+//        synchronized (this){ // close this object (AccountRepositoryImpl) and all its variables until we put the account
+//            accounts.put(accountId, account);
+//        }
+//        return account;
+//    }
     @Override
     public BankAccount save(BankAccount account) {
         account.setAccountId(++accountId);
         accounts.put(accountId, account);
         return account;
     }
+
 
     @Override
     public List<BankAccount> findAll() {
@@ -59,16 +72,21 @@ public class AccountRepositoryImpl implements AccountRepository {
     public void deleteById(Long id) {
         accounts.remove(id);
     }
-    public void populate() {
+
+    public  synchronized void populate() {
         for (int i = 0; i < 10; i++) {
             BankAccount account = Director.accountBuilder()
-                    .accountId(++accountId)
                     .balance(1000+ Math.random()*90000)
                     .AccountType(Math.random()>0.5?AccountType.SAVING_ACCOUNT: AccountType.CURRENT_ACCOUNT)
                     .AccountStatus(Math.random()>0.5? AccountStatus.CREATED: AccountStatus.ACTIVATED)
                     .build();
             save(account);
         }
+        System.out.println("--------------------");
+        System.out.println("Threat Name : "+Thread.currentThread().getName());
+        System.out.println("Account Count : " +  accountId );
+        System.out.println("Size : " + accounts.size());
+        System.out.println("--------------------");
 
     }
 
