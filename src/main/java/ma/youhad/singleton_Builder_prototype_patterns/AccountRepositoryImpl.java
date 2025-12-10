@@ -1,12 +1,11 @@
 package ma.youhad.singleton_Builder_prototype_patterns;
 
+import ma.youhad.singleton_Builder_prototype_patterns.model.AccountStatus;
+import ma.youhad.singleton_Builder_prototype_patterns.model.AccountType;
 import ma.youhad.singleton_Builder_prototype_patterns.model.BankAccount;
 import ma.youhad.singleton_Builder_prototype_patterns.repository.AccountRepository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -53,9 +52,14 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
     public void populate() {
         for (int i = 0; i < 10; i++) {
-            BankAccount account = new BankAccount();
-            account.setAccountId(++accountId);
-            accounts.put(account.getAccountId(), account);
+            BankAccount account = Director.accountBuilder()
+                    .accountId(++accountId)
+                    .balance(1000+ Math.random()*90000)
+                    .AccountType(Math.random()>0.5?AccountType.SAVING_ACCOUNT: AccountType.CURRENT_ACCOUNT)
+                    .AccountStatus(Math.random()>0.5? AccountStatus.CREATED: AccountStatus.ACTIVATED)
+                    .build();
+            save(account);
         }
+
     }
 }
