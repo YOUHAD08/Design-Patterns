@@ -7,16 +7,17 @@ import ma.youhad.singleton_Builder_prototype_patterns.repository.AccountReposito
 import ma.youhad.singleton_Builder_prototype_patterns.util.JSONSerializer;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 public class PatternDemo {
     public static void main(String[] args) {
 
-        System.out.println("------ Builder Design Patterns --------");
+        System.out.println("------ Builder Design Pattern --------");
 
         System.out.println("***** Display All Accounts *****");
         JSONSerializer<BankAccount> bankAccountJSONSerializer = new JSONSerializer<>();
-        AccountRepositoryImpl accountRepository = new AccountRepositoryImpl();
+       //   AccountRepositoryImpl accountRepository = new AccountRepositoryImpl();
+        System.out.println("------ Singleton Design Pattern --------");
+        AccountRepositoryImpl accountRepository = AccountRepositoryImpl.getInstance();
         accountRepository.populate();
         List<BankAccount> accounts = accountRepository.findAll();
         accounts.stream().map(bankAccountJSONSerializer::toJson).forEach(System.out::println);

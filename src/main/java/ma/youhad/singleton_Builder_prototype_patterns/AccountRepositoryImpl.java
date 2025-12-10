@@ -11,6 +11,15 @@ import java.util.stream.Collectors;
 
 public class AccountRepositoryImpl implements AccountRepository {
 
+    private static final AccountRepositoryImpl accountRepository;
+    static {
+        System.out.println("Singleton Design Pattern Instantiation");
+        accountRepository = new AccountRepositoryImpl();
+    }
+
+    private AccountRepositoryImpl() {
+    }
+
     private Map<Long, BankAccount> accounts = new HashMap<>();
     private long accountId = 0;
     @Override
@@ -61,5 +70,9 @@ public class AccountRepositoryImpl implements AccountRepository {
             save(account);
         }
 
+    }
+
+    public static AccountRepositoryImpl getInstance(){
+        return accountRepository;
     }
 }
