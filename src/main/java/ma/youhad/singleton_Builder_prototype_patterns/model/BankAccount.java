@@ -6,17 +6,20 @@ public class BankAccount implements Cloneable {
     private String currency;
     private AccountType type;
     private AccountStatus status;
+    private Customer customer;
 
     public BankAccount() {
     }
 
 
-    public BankAccount(Long accountId, double balance, String currency, AccountType type, AccountStatus status) {
+    public BankAccount(Long accountId, double balance, String currency, AccountType type, AccountStatus status,Customer customer) {
         this.accountId = accountId;
         this.balance = balance;
         this.currency = currency;
         this.type = type;
         this.status = status;
+        this.customer = customer;
+
     }
 
     public Long getAccountId() {
@@ -67,6 +70,7 @@ public class BankAccount implements Cloneable {
                 ", currency='" + currency + '\'' +
                 ", type=" + type +
                 ", status=" + status +
+                ", customer=" + customer +
                 ", Memory Address :" + "@"  + Integer.toHexString(System.identityHashCode(this)) +
                 '}';
     }
@@ -78,10 +82,20 @@ public class BankAccount implements Cloneable {
     @Override
     public BankAccount clone() {
         try {
-            return (BankAccount) super.clone();
+            BankAccount account = (BankAccount) super.clone();
+            account.setCustomer(account.getCustomer().clone());
+            return account;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public static class Builder {
