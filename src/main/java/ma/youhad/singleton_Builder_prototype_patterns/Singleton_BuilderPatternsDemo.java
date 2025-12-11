@@ -1,14 +1,11 @@
 package ma.youhad.singleton_Builder_prototype_patterns;
 
-import ma.youhad.singleton_Builder_prototype_patterns.model.AccountStatus;
-import ma.youhad.singleton_Builder_prototype_patterns.model.AccountType;
 import ma.youhad.singleton_Builder_prototype_patterns.model.BankAccount;
-import ma.youhad.singleton_Builder_prototype_patterns.repository.AccountRepository;
 import ma.youhad.singleton_Builder_prototype_patterns.util.JSONSerializer;
 
 import java.util.List;
 
-public class PatternDemo {
+public class Singleton_BuilderPatternsDemo {
     public static void main(String[] args) {
 
         System.out.println("------ Builder Design Pattern --------");

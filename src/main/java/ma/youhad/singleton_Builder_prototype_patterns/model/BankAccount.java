@@ -1,6 +1,6 @@
 package ma.youhad.singleton_Builder_prototype_patterns.model;
 
-public class BankAccount {
+public class BankAccount implements Cloneable {
     private Long accountId;
     private double balance;
     private String currency;
@@ -67,11 +67,21 @@ public class BankAccount {
                 ", currency='" + currency + '\'' +
                 ", type=" + type +
                 ", status=" + status +
+                ", Memory Address :" + "@"  + Integer.toHexString(System.identityHashCode(this)) +
                 '}';
     }
 
     public static Builder builder(){
         return new Builder();
+    }
+
+    @Override
+    public BankAccount clone() {
+        try {
+            return (BankAccount) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 
     public static class Builder {
